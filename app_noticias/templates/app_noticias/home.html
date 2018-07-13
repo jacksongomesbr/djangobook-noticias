@@ -1,0 +1,9 @@
+<h1>Notícias</h1>
+
+{% for noticia in object_list %}
+<div>
+    <h2>{{ noticia.titulo }}</h2>
+    <p>{{ noticia.conteudo | linebreaksbr }}</p>
+    <br>
+</div>
+{% endfor %}
