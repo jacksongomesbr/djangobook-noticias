@@ -1,9 +1,18 @@
-<h1>Notícias</h1>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Notícias</title>
+</head>
+<body>
 
+<h1>Notícias</h1>
+<h2>Notícias recentes</h2>
 {% for noticia in object_list %}
 <div>
-    <h2>{{ noticia.titulo }}</h2>
-    <p>{{ noticia.conteudo | linebreaksbr }}</p>
-    <br>
+    <div><a href="{% url "detalhes" noticia.pk %}">{{ noticia.titulo }}</a></div>
 </div>
 {% endfor %}
+
+</body>
+</html>

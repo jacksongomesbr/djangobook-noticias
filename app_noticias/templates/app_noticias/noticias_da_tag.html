@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Notícias da tag {{ tag }}</title>
+</head>
+<body>
+<h1>Notícias da tag "{{ tag }}"</h1>
+{% for noticia in noticias %}
+<div>
+    <div><a href="{% url "detalhes" noticia.pk %}">{{ noticia.titulo }}</a></div>
+</div>
+{% endfor %}
+</body>
+</html>
