@@ -1,7 +1,7 @@
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, DetailView
 
 # Create your views here.
 from .models import Noticia, Tag
@@ -21,12 +21,9 @@ class NoticiasResumoView(TemplateView):
         return context
 
 
-def noticia_detalhes(request, noticia_id):
-    try:
-        noticia = Noticia.objects.get(pk=noticia_id)
-    except Noticia.DoesNotExist:
-        raise Http404('Notícia não encontrada')
-    return render(request, 'app_noticias/detalhes.html', {'noticia': noticia})
+class NoticiaDetalhesView(DetailView):
+    model = Noticia
+    template_name = 'app_noticias/detalhes.html'
 
 
 def noticias_da_tag(request, tag_slug):
