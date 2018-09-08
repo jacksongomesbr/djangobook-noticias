@@ -30,6 +30,16 @@ class NoticiaDetalhesView(DetailView):
     template_name = 'app_noticias/detalhes.html'
 
 
+class TagDetalhesView(DetailView):
+    model = Tag
+    template_name = 'app_noticias/noticias_da_tag.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['noticias'] = Noticia.objects.filter(tags__in=[self.object])
+        return context
+
+
 def noticias_da_tag(request, tag_slug):
     try:
         tag = Tag.objects.get(slug=tag_slug)
