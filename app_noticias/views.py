@@ -1,7 +1,7 @@
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 # Create your views here.
 from .models import Noticia, Tag
@@ -12,30 +12,13 @@ class HomePageView(ListView):
     template_name = 'app_noticias/home.html'
 
 
-class NoticiasResumoView(View):
+class NoticiasResumoView(TemplateView):
     template_name = 'app_noticias/resumo.html'
 
-    def get(self, request, *args, **kwargs):
-        total = Noticia.objects.count()
-        return render(request, self.template_name, {'total': total})
-
-
-def noticias_resumo(request):
-    total = Noticia.objects.count()
-    html = """
-    <html>
-    <body>
-    <h1>Resumo</h1>
-    <p>A quantiade total de notícias é {}.</p>
-    </body>
-    </html>
-    """.format(total)
-    return HttpResponse(html)
-
-
-def noticias_resumo_template(request):
-    total = Noticia.objects.count()
-    return render(request, 'app_noticias/resumo.html', {'total': total})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total'] = Noticia.objects.count()
+        return context
 
 
 def noticia_detalhes(request, noticia_id):
