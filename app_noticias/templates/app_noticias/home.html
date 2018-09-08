@@ -8,7 +8,7 @@
 
 <h1>Notícias</h1>
 <h2>Notícias recentes</h2>
-{% for noticia in object_list %}
+{% for noticia in noticias %}
 <div>
     <div><a href="{% url "detalhes" noticia.pk %}">{{ noticia.titulo }}</a></div>
 </div>

@@ -9,7 +9,11 @@ from .models import Noticia, Tag
 
 class HomePageView(ListView):
     model = Noticia
+    context_object_name = 'noticias'
     template_name = 'app_noticias/home.html'
+
+    def get_queryset(self):
+        return Noticia.objects.exclude(data_de_publicacao=None).order_by('-data_de_publicacao')[:5]
 
 
 class NoticiasResumoView(TemplateView):
