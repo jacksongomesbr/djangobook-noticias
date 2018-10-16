@@ -17,3 +17,13 @@ class TagAdmin(admin.ModelAdmin):
 @admin.register(Noticia)
 class NoticiaAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(MensagemDeContato)
+class MensagemDeContatoAdmin(admin.ModelAdmin):
+    readonly_fields = ('data',)
+
+
+@admin.register(Categoria)
+class CategoriaAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('nome',)}

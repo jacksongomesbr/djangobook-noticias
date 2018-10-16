@@ -1,0 +1,8 @@
+<h1>Notícias de: {{autor.nome}}</h1>
+<ul>
+    {% for noticia in noticias %}
+    <li><a href="/noticias/{{noticia.id}}/">{{noticia.titulo}}</a></li>
+    {% empty %}
+    <li>O autor não publicou notícias</li>
+    {% endfor %}
+</ul>

@@ -30,6 +30,12 @@ class Tag(models.Model):
     def __str__(self):
         return self.nome
 
+class Categoria(models.Model):
+    nome = models.CharField(max_length=64)
+    slug = models.SlugField(max_length=64)
+
+    def __str__(self):
+        return self.nome
 
 class Noticia(models.Model):
     class Meta:
@@ -43,6 +49,21 @@ class Noticia(models.Model):
     autor = models.ForeignKey(
         Pessoa, on_delete=models.SET_NULL, related_name='noticias', blank=True, null=True)
     tags = models.ManyToManyField(Tag)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.titulo
+
+
+class MensagemDeContato(models.Model):
+    class Meta:
+        verbose_name = 'Mensagem de contato'
+        verbose_name_plural = 'Mensagens de contato'
+
+    nome = models.CharField(max_length=128)
+    email = models.EmailField('E-mail', null=True, blank=True)
+    mensagem = models.TextField()
+    data = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.nome

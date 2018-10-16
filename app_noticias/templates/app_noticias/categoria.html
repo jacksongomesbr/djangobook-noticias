@@ -1,0 +1,9 @@
+<h1>Notícias de: {{categoria.nome}}</h1>
+<p>Porcentagem de notícias nesta categoria: {{ porcentagem|floatformat:1 }} %</p>
+<ul>
+    {% for noticia in noticias %}
+    <li><a href="/noticias/{{noticia.id}}/">{{noticia.titulo}}</a></li>
+    {% empty %}
+    <li>Não há notícia nesta categoria</li>
+    {% endfor %}
+</ul>

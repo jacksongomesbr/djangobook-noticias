@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Contato</title>
+    <style type="text/css">
+        .errorlist {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-$END$
+<h1>Contato</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar mensagem</button>
+</form>
 </body>
 </html>
