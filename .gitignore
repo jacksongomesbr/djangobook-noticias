@@ -1,4 +1,7 @@
 .vscode
+.vscode/*
 .idea
 venv
 __pycache__
+media
+media/*
