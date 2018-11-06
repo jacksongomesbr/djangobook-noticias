@@ -1,3 +1,8 @@
+{% extends "app_noticias/base.html" %}
+
+{% block titulo %}Página do autor {{autor.nome}}{% endblock titulo %}
+
+{% block conteudo %}
 <h1>Notícias de: {{autor.nome}}</h1>
 <ul>
     {% for noticia in noticias %}
@@ -6,3 +11,5 @@
     <li>O autor não publicou notícias</li>
     {% endfor %}
 </ul>
+{% endblock conteudo %}
+
