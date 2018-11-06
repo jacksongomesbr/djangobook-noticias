@@ -55,6 +55,15 @@ class Noticia(models.Model):
         return self.titulo
 
 
+class FotoDeNoticia(models.Model):
+    class Meta:
+        verbose_name = 'Foto de notícia'
+        verbose_name_plural = 'Fotos de notícias'
+
+    noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='fotos')
+    arquivo = models.FileField()
+
+
 class MensagemDeContato(models.Model):
     class Meta:
         verbose_name = 'Mensagem de contato'
